@@ -1,0 +1,4 @@
+name: VextraHC
+version: 1.0a
+description: Custom Hardcore gamemode
+main: net.violantic.vc.HardcorePlugin

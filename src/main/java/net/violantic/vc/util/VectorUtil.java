@@ -4,6 +4,9 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class VectorUtil {
 
     public static Vector calculateVelocity(Vector from, Vector to, int heightGain, double gravity) {
@@ -101,6 +104,22 @@ public class VectorUtil {
         double z = initialZ * cosYaw - x * sinYaw;
         x = initialZ * sinYaw + x * cosYaw;
         return new Vector(x, y, z);
+    }
+
+    public static Set<Vector> getSphericalVectors(double angularOffset) {
+        Set<Vector> vectors = new HashSet<>();
+        for (double i = 0; i <= Math.PI; i += Math.PI / 10) {
+            double radius = Math.sin(i);
+            double y = Math.cos(i);
+            for (double a = 0; a < Math.PI * 2; a+= Math.PI / 10) {
+                double x = Math.cos(a) * radius;
+                double z = Math.sin(a) * radius;
+
+                vectors.add(new Vector(x, y, z));
+            }
+        }
+
+        return vectors;
     }
 
     public static double angleToXAxis(Vector vector) {

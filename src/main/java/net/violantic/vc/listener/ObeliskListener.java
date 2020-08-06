@@ -15,11 +15,12 @@ public class ObeliskListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        if(plugin.getObeliskManager().isObelisk(event.getClickedBlock())) {
 
-            // TODO handle blood tokens
-
-        }
+//        if(plugin.getObeliskManager().isObelisk(event.getClickedBlock())) {
+//
+//            // TODO handle blood tokens
+//
+//        }
 
     }
 }

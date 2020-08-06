@@ -58,7 +58,7 @@ public class ObeliskManager {
         ObeliskBuildTask buildTask = new ObeliskBuildTask(obelisk);
         ObeliskParticleTask particleTask = new ObeliskParticleTask(
                 obelisk,
-                Color.PURPLE,
+                Color.TEAL,
                 2,
                 0.67,
                 50

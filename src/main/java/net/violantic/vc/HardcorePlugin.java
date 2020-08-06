@@ -1,6 +1,8 @@
 package net.violantic.vc;
 
 import net.milkbowl.vault.economy.Economy;
+import net.violantic.vc.listener.DeathListener;
+import net.violantic.vc.listener.ObeliskListener;
 import net.violantic.vc.obelisk.Obelisk;
 import net.violantic.vc.obelisk.ObeliskManager;
 import org.bukkit.Bukkit;
@@ -33,6 +35,7 @@ public class HardcorePlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         initConfig();
+        initVault();
 
         obeliskManager = new ObeliskManager(this);
         obeliskManager.register(new Obelisk(
@@ -106,6 +109,9 @@ public class HardcorePlugin extends JavaPlugin {
         globalPayment = getConfig().getDouble("values.global_pay");
         deathPrice = getConfig().getDouble("values.death_price");
         banPeriodDays = getConfig().getInt("values.bantime");
+
+        getServer().getPluginManager().registerEvents(new ObeliskListener(this), this);
+        getServer().getPluginManager().registerEvents(new DeathListener(this), this);
 
     }
 

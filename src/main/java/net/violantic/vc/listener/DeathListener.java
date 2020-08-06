@@ -66,5 +66,10 @@ public class DeathListener implements Listener {
     @EventHandler
     public void onRespawn(PlayerRespawnEvent event) {
         // TODO temp ban player
+
+        Bukkit.dispatchCommand(
+                Bukkit.getConsoleSender(),
+                "tempban " + event.getPlayer().getName() + " 1d server:hardcore"
+        );
     }
 }

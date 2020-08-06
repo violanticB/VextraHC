@@ -1,0 +1,12 @@
+net\violantic\vc\util\ConfigUtil.class
+net\violantic\vc\util\VectorUtil.class
+net\violantic\vc\Messages.class
+net\violantic\vc\util\ObeliskUtil.class
+net\violantic\vc\obelisk\animation\ObeliskBuildTask.class
+net\violantic\vc\obelisk\animation\ObeliskParticleTask.class
+net\violantic\vc\listener\ObeliskListener.class
+net\violantic\vc\listener\DeathListener.class
+net\violantic\vc\obelisk\Obelisk.class
+net\violantic\vc\HardcorePlugin.class
+net\violantic\vc\command\SetObeliskCommand.class
+net\violantic\vc\obelisk\ObeliskManager.class

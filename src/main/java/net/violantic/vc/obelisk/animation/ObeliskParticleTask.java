@@ -32,14 +32,15 @@ public class ObeliskParticleTask implements Runnable {
         this.a = a;
         this.b = b;
         this.spacing = spacing;
+        this.sphereVectors = VectorUtil.getSphericalVectors(0);
     }
 
     public void run() {
-        for(double theta = 0; theta < Math.PI * 2; theta += Math.PI / 16) {
-            double x = ((a + b) * Math.cos(theta)
-                    - b * Math.cos((a / b + 1.0) * theta) + .5);
-            double z = ((a + b) * Math.sin(theta)
-                    - b * Math.sin((a / b + 1.0) * theta) + .5);
+        for(double theta = 0; theta < 360; theta += 2) {
+            double x = ((a + b) * Math.cos(Math.toRadians(theta))
+                    - b * Math.cos((a / b + 1.0) * Math.toRadians(theta)) + .5);
+            double z = ((a + b) * Math.sin(Math.toRadians(theta))
+                    - b * Math.sin((a / b + 1.0) * Math.toRadians(theta)) + .5);
 
             Vector direction = new Vector(x, Math.sin(phi), z);
 
@@ -56,5 +57,16 @@ public class ObeliskParticleTask implements Runnable {
 
         phi += Math.PI / 96;
         alpha += Math.PI / 96;
+
+        for (Vector sphereVector : sphereVectors) {
+            ParticleEffect.REDSTONE.sendColor(
+                    Bukkit.getOnlinePlayers(),
+                    obelisk.getLocation().clone()
+                            .add(0, 8, 0)
+                            .add(sphereVector)
+                            .add(0, Math.sin(alpha), 0),
+                    Color.FUCHSIA
+            );
+        }
     }
 }
