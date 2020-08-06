@@ -1,0 +1,13 @@
+obelisk:
+  world: "world"
+  x: 0.0
+  y: 0.0
+  z: 0.0
+  height: 6
+
+values:
+  killer_pay: 100000
+  global_pay: 25000
+  death_price: 50000
+  bantime: 1
+  obelisk_price: 25000
