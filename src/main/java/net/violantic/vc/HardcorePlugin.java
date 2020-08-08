@@ -16,6 +16,8 @@ import java.util.logging.Level;
 
 public class HardcorePlugin extends JavaPlugin {
 
+    public static HardcorePlugin plugin;
+
     public static final String PREFIX =
             ChatColor.translateAlternateColorCodes('&', "&d&lVextraHC »&r");
 
@@ -34,6 +36,7 @@ public class HardcorePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        plugin = this;
         initConfig();
         initVault();
 
@@ -44,6 +47,10 @@ public class HardcorePlugin extends JavaPlugin {
                 obeliskPrice,
                 obeliskHeight
         ));
+    }
+
+    public static HardcorePlugin getPlugin() {
+        return plugin;
     }
 
     public ObeliskManager getObeliskManager() {

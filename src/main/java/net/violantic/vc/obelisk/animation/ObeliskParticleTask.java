@@ -7,6 +7,7 @@ import org.bukkit.Color;
 import org.bukkit.util.Vector;
 import org.inventivetalent.particle.ParticleEffect;
 
+import java.util.List;
 import java.util.Set;
 
 public class ObeliskParticleTask implements Runnable {
@@ -23,7 +24,7 @@ public class ObeliskParticleTask implements Runnable {
 
     // Sphere variables
     private double radius;
-    private Set<Vector> sphereVectors;
+    private List<Vector> sphereVectors;
 
     public ObeliskParticleTask(Obelisk obelisk, Color ringColor,
                                double a, double b, double spacing) {
@@ -58,6 +59,7 @@ public class ObeliskParticleTask implements Runnable {
         phi += Math.PI / 96;
         alpha += Math.PI / 96;
 
+        int gain = 255;
         for (Vector sphereVector : sphereVectors) {
             ParticleEffect.REDSTONE.sendColor(
                     Bukkit.getOnlinePlayers(),
@@ -65,7 +67,7 @@ public class ObeliskParticleTask implements Runnable {
                             .add(0, 8, 0)
                             .add(sphereVector)
                             .add(0, Math.sin(alpha), 0),
-                    Color.FUCHSIA
+                    Color.fromRGB(255, gain--, 255)
             );
         }
     }

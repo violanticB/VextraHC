@@ -1,7 +1,9 @@
 package net.violantic.vc.obelisk;
 
+import net.violantic.vc.obelisk.animation.MagicRainTask;
 import net.violantic.vc.obelisk.animation.ObeliskBuildTask;
 import net.violantic.vc.obelisk.animation.ObeliskParticleTask;
+import net.violantic.vc.world.geometry.shapes.SquareWorldGeometry;
 import org.bukkit.Color;
 import org.bukkit.block.Block;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -64,7 +66,10 @@ public class ObeliskManager {
                 50
         );
 
-        scheduler.runTaskTimer(javaPlugin, buildTask, 0, buildTask.getInterval());
+        MagicRainTask rainTask = new MagicRainTask(3, new SquareWorldGeometry(obelisk.getLocation(), 30));
+        scheduler.runTaskTimerAsynchronously(javaPlugin, rainTask, 0, 20);
+
+//        scheduler.runTaskTimer(javaPlugin, buildTask, 0, buildTask.getInterval());
         particleTaskId = scheduler.runTaskTimerAsynchronously(
                 javaPlugin,
                 particleTask,

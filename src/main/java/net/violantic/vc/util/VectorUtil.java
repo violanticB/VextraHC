@@ -4,7 +4,9 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class VectorUtil {
@@ -106,9 +108,9 @@ public class VectorUtil {
         return new Vector(x, y, z);
     }
 
-    public static Set<Vector> getSphericalVectors(double angularOffset) {
-        Set<Vector> vectors = new HashSet<>();
-        for (double i = 0; i <= Math.PI; i += Math.PI / 10) {
+    public static List<Vector> getSphericalVectors(double angularOffset) {
+        List<Vector> vectors = new ArrayList<>();
+        for (double i = 0; i <= Math.PI; i += Math.PI / 8) {
             double radius = Math.sin(i);
             double y = Math.cos(i);
             for (double a = 0; a < Math.PI * 2; a+= Math.PI / 10) {
