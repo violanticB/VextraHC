@@ -1,17 +1,16 @@
 package net.violantic.vc.obelisk.animation;
 
 import net.violantic.vc.HardcorePlugin;
+import net.violantic.vc.util.ParticleUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-import org.inventivetalent.particle.ParticleEffect;
-
-import java.util.UUID;
 
 public class SpellTask implements Runnable {
 
@@ -50,27 +49,27 @@ public class SpellTask implements Runnable {
                 netDistance += velocity;
                 Vector gravity = new Vector(0, gravityAcceleration, 0);
                 Vector projectileMotion = direction.clone().multiply(netDistance).subtract(gravity);
-                mage.playSound(start.clone().add(projectileMotion), Sound.FIRE_IGNITE, 1, 1);
+                mage.playSound(start.clone().add(projectileMotion), Sound.ITEM_FIRECHARGE_USE, 1, 1);
 
                 gravityAcceleration += 0.035;
 
                 for(double x = 0; x < velocity; x += particleDensity) {
-                    start.getWorld().getNearbyEntities(start, particleDensity, particleDensity, particleDensity).forEach((entity) -> {
+                    for (Entity entity : start.getWorld().getNearbyEntities(start, particleDensity, particleDensity, particleDensity)) {
                         if(entity == mage)
-                            return;
+                            continue;
 
                         entity.sendMessage("You've been hit");
 
                         if(entity instanceof LivingEntity) {
                             ((LivingEntity) entity).damage(5D);
                         }
-                    });
+                    }
 
                     start.add(projectileMotion.clone().normalize().add(new Vector(0, 0.05 * Math.sin(oscillationAngle), 0)).multiply(x));
-                    ParticleEffect.REDSTONE.sendColor(Bukkit.getOnlinePlayers(), start, Color.FUCHSIA);
+                    ParticleUtil.displayParticle(start, Color.FUCHSIA);
 
                     oppositeStrand.add(projectileMotion.clone().normalize().add(new Vector(0, -0.05 * Math.sin(oscillationAngle), 0)).multiply(x));
-                    ParticleEffect.REDSTONE.sendColor(Bukkit.getOnlinePlayers(), oppositeStrand, Color.TEAL);
+                    ParticleUtil.displayParticle(start, Color.TEAL);
                 }
 
                 oscillationAngle += Math.PI / 2;

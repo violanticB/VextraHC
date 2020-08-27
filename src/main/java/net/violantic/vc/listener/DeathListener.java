@@ -37,7 +37,7 @@ public class DeathListener implements Listener {
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
 
             // send title
-            onlinePlayer.playSound(onlinePlayer.getLocation(), Sound.WITHER_DEATH, 1, 1);
+            onlinePlayer.playSound(onlinePlayer.getLocation(), Sound.ENTITY_WITHER_DEATH, 1, 1);
 
             if(onlinePlayer.getUniqueId() == killer.getUniqueId())
                 continue;

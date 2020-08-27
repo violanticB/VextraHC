@@ -1,6 +1,7 @@
 package net.violantic.vc;
 
 import net.milkbowl.vault.economy.Economy;
+import net.violantic.vc.command.CapeCommand;
 import net.violantic.vc.listener.DeathListener;
 import net.violantic.vc.listener.ObeliskListener;
 import net.violantic.vc.obelisk.Obelisk;
@@ -47,6 +48,8 @@ public class HardcorePlugin extends JavaPlugin {
                 obeliskPrice,
                 obeliskHeight
         ));
+
+        getServer().getPluginCommand("cape").setExecutor(new CapeCommand());
     }
 
     public static HardcorePlugin getPlugin() {

@@ -1,12 +1,14 @@
 package net.violantic.vc.obelisk.animation;
 
 import net.violantic.vc.HardcorePlugin;
+import net.violantic.vc.util.ParticleUtil;
 import net.violantic.vc.world.geometry.WorldGeometry;
-import org.bukkit.*;
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-import org.inventivetalent.particle.ParticleEffect;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -36,7 +38,7 @@ public class MagicRainTask implements Runnable {
     private boolean checkCollision(Block block) {
         switch(block.getType()) {
             case GRASS:
-                block.setType(Material.MYCEL);
+                block.setType(Material.MYCELIUM);
                 break;
             case SAND:
                 block.setType(Material.GRAVEL);
@@ -81,11 +83,7 @@ public class MagicRainTask implements Runnable {
 
                         Color color = random % 2 == 0 ? Color.FUCHSIA : Color.TEAL;
                         for(double x = 0; x < velocity; x += PROJECTILE_DENSITY) {
-                            ParticleEffect.REDSTONE.sendColor(
-                                    Bukkit.getOnlinePlayers(),
-                                    from.clone().add(direction.subtract(new Vector(0, x, 0))),
-                                    color
-                            );
+                            ParticleUtil.displayParticle(from.clone().add(direction.subtract(new Vector(0, x, 0))), color);
                         }
 
                         distance += velocity;
